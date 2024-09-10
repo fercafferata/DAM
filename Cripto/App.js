@@ -16,13 +16,7 @@ export default function App() {
             'X-CoinAPI-Key': '12AC4B9E-EDEB-4146-8D89-88239A382058', // Clave API
           },
         });
-        response.data.forEach(exchange => {
-          console.log({
-            name: exchange.name,
-            volume1h: exchange.volume_1hrs_usd,
-            volume24h: exchange.volume_1day_usd
-          });
-        });
+        
         setExchanges(response.data);
       } catch (error) {
         console.error('Error al obtener la lista de exchanges:', error.response ? error.response.data : error.message);
@@ -35,8 +29,8 @@ export default function App() {
   const renderItem = ({ item }) => (
     <Card
       moneda={item.name}
-      volumen1h={item.volume_1hrs_usd ? item.volume_1hrs_usd.toString() : 'N/A'} // Manejo de valores no nulos
-      volumen24h={item.volume_1day_usd ? item.volume_1day_usd.toString() : 'N/A'} // Manejo de valores no nulos
+      volumen1h={item.volume_1hrs_usd} 
+      volumen24h={item.volume_1day_usd}
     />
   );
 
